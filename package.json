@@ -1,0 +1,17 @@
+{
+  "name": "shieldshift",
+  "version": "1.0.0",
+  "description": "AI-Powered Parametric Income Insurance for Gig Delivery Workers",
+  "scripts": {
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && uvicorn main:app --reload --port 8000",
+    "dev:mocks": "cd mock_apis && node server.js",
+    "dev:ml": "cd ml && python train_all.py",
+    "install:all": "cd frontend && npm install && cd ../mock_apis && npm install",
+    "setup": "pip install -r backend/requirements.txt && npm run install:all"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-team/shieldshift"
+  }
+}
