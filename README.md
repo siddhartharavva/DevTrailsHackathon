@@ -347,7 +347,7 @@ The primary persona — an urban Q-commerce delivery partner in India — uses a
 These are Express.js servers we build to simulate data sources that do not have free public APIs:
 
 | Mock API | Simulates |
-|---|---|---|
+|---|---|
 | Curfew / Gazette API | Municipal curfew orders, Section 144 |
 | Platform Status API | Swiggy/Blinkit order volume drop by zone |
 | Worker Registry API | e-Shram / platform worker ID verification |
