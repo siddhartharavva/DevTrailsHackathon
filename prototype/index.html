@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ShieldShift - Mobile App Screens</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+    <div class="device-mockup">
+        <div class="notch"></div>
+        <div class="status-bar">
+            <span>9:41</span>
+            <div class="status-icons">
+                <ion-icon name="cellular"></ion-icon>
+                <ion-icon name="wifi"></ion-icon>
+                <ion-icon name="battery-full"></ion-icon>
+            </div>
+        </div>
+
+        <div class="app-container" id="app-root">
+            
+            <!-- SCREEN 1: ONBOARDING -->
+            <section id="screen-onboarding" class="screen active">
+                <div class="app-header flex-between mb-8">
+                    <div style="display: flex; align-items: center;">
+                        <div class="shield-icon"><ion-icon name="shield-checkmark"></ion-icon></div>
+                        <span class="app-title">ShieldShift</span>
+                    </div>
+                    <ion-icon name="ellipsis-horizontal" style="font-size:24px; color:var(--text-muted);"></ion-icon>
+                </div>
+                
+                <h1>Choose your language</h1>
+                <p class="text-muted mt-2 mb-6" style="font-size: 16px;">ನಿಮ್ಮ ಭಾಷೆ ಆರಿಸಿ</p>
+
+                <div class="grid-2 mb-8">
+                    <div class="btn-outline selected">ಕನ್ನಡ</div>
+                    <div class="btn-outline">हिन्दी</div>
+                    <div class="btn-outline">தமிழ்</div>
+                    <div class="btn-outline">English</div>
+                </div>
+
+                <h3>YOUR PLATFORM</h3>
+                <div class="grid-3 mb-6">
+                    <div class="btn-outline selected" style="padding:10px;">Blinkit</div>
+                    <div class="btn-outline" style="padding:10px;">Zepto</div>
+                    <div class="btn-outline" style="padding:10px;">Swiggy</div>
+                </div>
+
+                <div class="box-panel mb-8">
+                    <p class="text-xs text-muted mb-2">Avg. daily earnings</p>
+                    <h2 class="text-white">₹ 520</h2>
+                    <p class="text-xs text-muted mt-2">22 deliveries/day • 1.6 km avg</p>
+                </div>
+
+                <div style="margin-top:auto">
+                    <button class="btn-primary" onclick="nav('screen-plan')">Continue &rarr;</button>
+                </div>
+            </section>
+
+            <!-- SCREEN 2: PLAN SELECTION -->
+            <section id="screen-plan" class="screen">
+                <div class="app-header flex-between mb-8">
+                    <div style="display: flex; align-items: center;">
+                        <div class="shield-icon"><ion-icon name="shield-checkmark"></ion-icon></div>
+                        <span class="app-title">ShieldShift</span>
+                    </div>
+                    <ion-icon name="ellipsis-horizontal" style="font-size:24px; color:var(--text-muted);"></ion-icon>
+                </div>
+
+                <h1>Pick your shield</h1>
+                <p class="text-muted mb-8">Weekly auto-pay via UPI. Pause anytime.</p>
+
+                <div class="plan-card" onclick="selectPlan(this)">
+                    <div class="plan-top">
+                        <div class="radio-circle"></div>
+                        <span class="plan-title">Basic</span>
+                        <div class="plan-price">₹7<div class="plan-price-sub">/week</div></div>
+                    </div>
+                    <div class="plan-desc">₹1/day • Rain + heat triggers</div>
+                </div>
+
+                <div class="plan-card selected" onclick="selectPlan(this)">
+                    <div class="plan-top">
+                        <div class="radio-circle"></div>
+                        <span class="plan-title text-white">Standard</span>
+                        <div class="plan-price text-blue">₹21<div class="plan-price-sub text-blue">/week</div></div>
+                    </div>
+                    <div class="plan-desc">₹3/day • Rain + heat + AQI</div>
+                    <div class="plan-green-box">
+                        Standard covers up to ₹500/week — 60% of your disrupted earnings
+                    </div>
+                </div>
+
+                <div class="plan-card" onclick="selectPlan(this)">
+                    <div class="plan-top">
+                        <div class="radio-circle"></div>
+                        <span class="plan-title">Max</span>
+                        <div class="plan-price">₹35<div class="plan-price-sub">/week</div></div>
+                    </div>
+                    <div class="plan-desc">₹5/day • All triggers incl. curfew</div>
+                </div>
+
+                <div style="margin-top:auto">
+                    <button class="btn-primary" onclick="nav('screen-dashboard')">Set up UPI auto-pay &rarr;</button>
+                </div>
+            </section>
+
+            <!-- SCREEN 3: WORKER DASHBOARD -->
+            <section id="screen-dashboard" class="screen">
+                <div class="flex-between mb-8" style="margin-top: 20px;">
+                    <div>
+                        <p class="text-xs text-muted">Good morning</p>
+                        <h2 class="text-white" style="font-size:20px; margin:0;">Ravi M. 👋</h2>
+                    </div>
+                    <div class="pill active">ACTIVE</div>
+                </div>
+
+                <div class="protection-card mb-4" style="background: #0F172A;">
+                    <h3 style="font-size:12px; color:var(--text-muted)">THIS WEEK'S PROTECTION</h3>
+                    <h1 class="text-white" style="font-size:40px; margin-bottom: 8px;">₹500</h1>
+                    <p class="text-xs text-muted">Standard Plan • ₹21 paid • Expires Sunday</p>
+                </div>
+
+                <div class="grid-2 mb-8">
+                    <div class="box-panel" style="padding: 16px;">
+                        <h2 class="text-green mb-1" style="font-size: 22px;">₹184</h2>
+                        <p class="text-xs text-muted">Received this<br>week</p>
+                    </div>
+                    <div class="box-panel" style="padding: 16px;">
+                        <h2 class="text-orange mb-1" style="font-size: 22px;">₹316</h2>
+                        <p class="text-xs text-muted">Remaining cap<br>&nbsp;</p>
+                    </div>
+                </div>
+
+                <h3 style="font-size:13px;">RECENT EVENTS</h3>
+                <div class="box-panel" style="padding: 0 20px;">
+                    <div class="event-item event-row mt-2" onclick="nav('screen-payout')" style="cursor:pointer;">
+                        <div style="display:flex;">
+                            <div class="event-circle c-orange"></div>
+                            <div>
+                                <h4 class="text-white" style="font-size:14px; font-weight:600;">Orange Rain Alert - HSR Zone</h4>
+                                <p class="text-xs text-muted mt-1">Today, 9:05 AM • 4.2h disruption</p>
+                            </div>
+                        </div>
+                        <div class="text-green font-bold text-sm">+₹184</div>
+                    </div>
+                    <div class="event-item event-row" style="opacity: 0.6">
+                        <div style="display:flex;">
+                            <div class="event-circle c-yellow"></div>
+                            <div>
+                                <h4 class="text-white" style="font-size:14px; font-weight:600;">Heat Alert - 44°C - KR Puram</h4>
+                                <p class="text-xs text-muted mt-1">Mon, 2:30 PM • No overlap</p>
+                            </div>
+                        </div>
+                        <div class="text-muted font-bold">-</div>
+                    </div>
+                </div>
+                
+                <p class="text-center text-xs text-muted mt-8" style="cursor:pointer;" onclick="nav('screen-trigger')">Simulate Backend Engine &rarr;</p>
+            </section>
+
+            <!-- SCREEN 4: PAYOUT RECEIVED -->
+            <section id="screen-payout" class="screen text-center">
+                <div class="flex-between" style="margin-top: 20px;">
+                    <ion-icon name="arrow-back" style="font-size:24px; color:white; cursor:pointer;" onclick="nav('screen-dashboard')"></ion-icon>
+                    <ion-icon name="ellipsis-horizontal" style="font-size:24px; color:var(--text-muted);"></ion-icon>
+                </div>
+
+                <div class="check-circle-big">
+                    <ion-icon name="checkmark"></ion-icon>
+                </div>
+
+                <h1 class="text-green mb-2" style="font-size: 48px;">₹184</h1>
+                <p class="text-white mb-6">Credited to your UPI account</p>
+
+                <div style="display:inline-block;" class="pill blue mb-8">Bengaluru Orange Rain Alert</div>
+
+                <div style="text-align: left;" class="mb-8">
+                    <div class="timeline-box">
+                        <span>Event detected</span> <span>9:05 AM</span>
+                    </div>
+                    <div class="timeline-box">
+                        <span>Verified & paid</span> <span>9:22 AM</span>
+                    </div>
+                    <div class="timeline-box">
+                        <span>Disruption covered</span> <span>4.2 hours</span>
+                    </div>
+                    <div class="timeline-box" style="margin-bottom:0;">
+                        <span>UPI reference</span> <span>UTR2828832889</span>
+                    </div>
+                </div>
+
+                <p class="text-xs text-muted mt-4">No claim filed. No paperwork. Automatic.</p>
+            </section>
+
+            <!-- SCREEN 5: TRIGGER ENGINE LIVE -->
+            <section id="screen-trigger" class="screen">
+                <div class="flex-between mb-6" style="margin-top: 20px;">
+                    <h2 class="text-white" style="font-size:18px; margin:0;">Trigger Engine</h2>
+                    <div style="color:var(--accent-red); font-size:12px; font-weight:700; display:flex; align-items:center; gap:6px;">
+                        <div style="width:6px; height:6px; border-radius:50%; background:var(--accent-red); box-shadow:0 0 8px var(--accent-red);"></div> LIVE
+                    </div>
+                </div>
+
+                <div class="alert-box mb-8">
+                    <div class="flex-between mb-2">
+                        <span class="text-xs text-muted" style="letter-spacing:1px;">OPEN-METEO - LIVE</span>
+                        <div class="pill red" style="font-size:10px;">RED ALERT</div>
+                    </div>
+                    <h2 class="text-white" style="font-size:20px;">Heavy Rain — Orange</h2>
+                    <p class="text-muted text-xs mb-4">HSR Layout zone - 72.4 mm/hr - 9:03 AM IST</p>
+                    
+                    <div style="width: 100%; height: 4px; background: rgba(37,99,235,0.2); border-radius: 2px; margin-bottom:8px;">
+                        <div style="width:100%; height:100%; background:var(--accent-blue); border-radius:2px;"></div>
+                    </div>
+                    <p class="text-xs text-muted">Event confirmed</p>
+                </div>
+
+                <h3 style="font-size:12px; margin-bottom:16px;">ELIGIBILITY PIPELINE</h3>
+                
+                <div class="pipeline-item">
+                    <div style="display:flex; align-items:center;">
+                        <div class="p-dot dot-green"></div> <span class="text-white">Zone workers identified</span>
+                    </div>
+                    <span class="text-muted text-xs">+0:05</span>
+                </div>
+                <div class="pipeline-item">
+                    <div style="display:flex; align-items:center;">
+                        <div class="p-dot dot-green"></div> <span class="text-white">Shift profiles checked</span>
+                    </div>
+                    <span class="text-muted text-xs">+0:10</span>
+                </div>
+                <div class="pipeline-item">
+                    <div style="display:flex; align-items:center;">
+                        <div class="p-dot dot-green"></div> <span class="text-white">GPS zone presence verified</span>
+                    </div>
+                    <span class="text-muted text-xs">+0:14</span>
+                </div>
+                <div class="pipeline-item">
+                    <div style="display:flex; align-items:center;">
+                        <div class="p-dot dot-green"></div> <span class="text-white">Population cross-check: 63%</span>
+                    </div>
+                    <span class="text-muted text-xs">+0:17</span>
+                </div>
+                <div class="pipeline-item">
+                    <div style="display:flex; align-items:center;">
+                        <div class="p-dot dot-orange"></div> <span class="text-white">Anomaly detection running</span>
+                    </div>
+                    <span class="text-muted text-xs">+0:19</span>
+                </div>
+                <div class="pipeline-item" style="opacity:0.5;">
+                    <div style="display:flex; align-items:center;">
+                        <div class="p-dot dot-empty"></div> <span class="text-muted">UPI payouts queued (47)</span>
+                    </div>
+                    <span class="text-muted text-xs">—</span>
+                </div>
+
+                <p class="text-center text-xs text-muted mt-8" style="cursor:pointer;" onclick="nav('screen-fraud')">View Fraud Monitor &rarr;</p>
+            </section>
+
+            <!-- SCREEN 6: FRAUD MONITOR -->
+            <section id="screen-fraud" class="screen">
+                <div class="flex-between mb-8" style="margin-top: 20px;">
+                    <h2 class="text-white" style="font-size:18px; margin:0;">Fraud Monitor</h2>
+                    <div class="pill red" style="background:transparent;">2 FLAGGED</div>
+                </div>
+
+                <div class="grid-3 mb-8">
+                    <div class="box-panel" style="padding:12px; text-align:center;">
+                        <h2 class="text-blue" style="font-size:24px; margin-bottom:4px;">247</h2>
+                        <p class="text-xs text-muted">Active workers</p>
+                    </div>
+                    <div class="box-panel" style="padding:12px; text-align:center;">
+                        <h2 class="text-green" style="font-size:24px; margin-bottom:4px;">45</h2>
+                        <p class="text-xs text-muted">Auto-approved</p>
+                    </div>
+                    <div class="box-panel" style="padding:12px; text-align:center;">
+                        <h2 class="text-red" style="font-size:24px; margin-bottom:4px;">2</h2>
+                        <p class="text-xs text-muted">Flagged</p>
+                    </div>
+                </div>
+
+                <h3 style="font-size:12px; margin-bottom:16px;">CLAIM ACTIVATION SPREAD</h3>
+                <div class="chart-box">
+                    <div class="bar" style="height: 10%;"></div>
+                    <div class="bar" style="height: 15%;"></div>
+                    <div class="bar" style="height: 40%;"></div>
+                    <div class="bar" style="height: 35%;"></div>
+                    <div class="bar" style="height: 45%;"></div>
+                    <div class="bar" style="height: 25%;"></div>
+                    <div class="bar" style="height: 30%;"></div>
+                    <div class="bar red" style="height: 80%;"></div>
+                    <div class="bar red" style="height: 95%;"></div>
+                    <div class="bar" style="height: 20%;"></div>
+                    <div class="bar" style="height: 10%;"></div>
+                </div>
+                <p class="text-xs text-muted text-center mb-8">Normal spread ← · → Anomalous spike (ring signal)</p>
+
+                <h3 style="font-size:12px; margin-bottom:16px;">FLAGGED WORKERS</h3>
+                
+                <div class="fraud-card">
+                    <div>
+                        <h4 class="text-white text-sm mb-1">Worker #4821</h4>
+                        <p class="text-xs text-muted">Cell tower mismatch - Perfect GPS accuracy</p>
+                    </div>
+                    <div class="fraud-score">0.81</div>
+                </div>
+
+                <div class="fraud-card">
+                    <div>
+                        <h4 class="text-white text-sm mb-1">Worker #4858</h4>
+                        <p class="text-xs text-muted">Ring cluster - Activation T+0:02</p>
+                    </div>
+                    <div class="fraud-score">0.74</div>
+                </div>
+
+                <p class="text-center text-xs text-muted mt-6">Payouts held - 24h review window</p>
+
+                <p class="text-center text-xs text-muted mt-12" style="cursor:pointer;" onclick="nav('screen-onboarding')">Restart Demo &circlearrowleft;</p>
+            </section>
+
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
