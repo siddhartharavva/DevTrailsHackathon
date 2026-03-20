@@ -469,9 +469,9 @@ T+00:28  Admin dashboard updated with event summary
 
 *ShieldShift — because a delivery partner's income should survive the rain.*
 
-> **Repository:** `github.com/[your-team]/shieldshift`  
-> **Team:** [Your team name] — Amrita School of Computing, Bengaluru  
-> **Contact:** [your email]  
+> **Repository:** `https://github.com/siddhartharavva/DevTrailsHackathon.git`  
+> **Team:** ShieldShift — Amrita School of Computing, Bengaluru  
+> **Contact:** siddhartha.ravva@gmail.com  
 > **Demo Video:** [link to 2-min video]
 ---
 
