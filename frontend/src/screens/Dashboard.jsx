@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getWorker, getWorkerSummary, getEvents } from "../services/api";
 
 export default function Dashboard() {
-  const navigate   = useNavigate();
   const workerId   = localStorage.getItem("worker_id");
   const workerName = localStorage.getItem("worker_name") || "Partner";
+  const isGuestView = !workerId;
 
   const [worker,  setWorker]  = useState(null);
   const [summary, setSummary] = useState(null);
@@ -13,15 +13,42 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let active = true;
+
+    if (!workerId) {
+      setLoading(false);
+      setWorker(null);
+      setSummary(null);
+      setEvents([]);
+      return () => {
+        active = false;
+      };
+    }
+
     Promise.all([
       getWorker(workerId),
       getWorkerSummary(workerId),
       getEvents(),
-    ]).then(([w, s, e]) => {
-      setWorker(w);
-      setSummary(s);
-      setEvents(e.slice(0, 5));
-    }).finally(() => setLoading(false));
+    ])
+      .then(([w, s, e]) => {
+        if (!active) return;
+        setWorker(w);
+        setSummary(s);
+        setEvents(Array.isArray(e) ? e.slice(0, 5) : []);
+      })
+      .catch(() => {
+        if (!active) return;
+        setWorker(null);
+        setSummary(null);
+        setEvents([]);
+      })
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+
+    return () => {
+      active = false;
+    };
   }, [workerId]);
 
   if (loading) return (
@@ -33,7 +60,10 @@ export default function Dashboard() {
     </div>
   );
 
-  const plan = worker?.policy;
+  const plan = worker?.policy || { active: true, weekly_cap: 500, weekly_premium: 21 };
+  const planName = worker?.plan
+    ? worker.plan.charAt(0).toUpperCase() + worker.plan.slice(1)
+    : "Demo";
   const capUsedPct = summary
     ? Math.min((summary.weekly_cap_used / (summary.weekly_cap_used + summary.weekly_cap_remaining)) * 100, 100)
     : 0;
@@ -54,6 +84,14 @@ export default function Dashboard() {
         </span>
       </div>
 
+      {isGuestView && (
+        <div className="card" style={{ marginBottom: 16 }}>
+          <div style={{ fontSize: 12, color: "var(--amber)" }}>
+            Preview mode: complete onboarding to load live worker data.
+          </div>
+        </div>
+      )}
+
       {/* Coverage card */}
       <div style={{
         background: "linear-gradient(135deg, rgba(26,107,255,0.25) 0%, rgba(0,201,167,0.1) 100%)",
@@ -66,7 +104,7 @@ export default function Dashboard() {
           ₹{plan?.weekly_cap || 0}
         </div>
         <div style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", marginTop: 2 }}>
-          {worker?.plan?.charAt(0).toUpperCase() + worker?.plan?.slice(1)} Plan ·
+          {planName} Plan ·
           ₹{plan?.weekly_premium} paid ·
           Valid until {plan?.valid_until ? new Date(plan.valid_until).toLocaleDateString("en-IN", {day:"numeric",month:"short"}) : "—"}
         </div>

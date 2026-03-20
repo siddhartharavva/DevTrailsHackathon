@@ -16,9 +16,32 @@ export default function Claims() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let active = true;
+
+    if (!workerId) {
+      setLoading(false);
+      setClaims([]);
+      return () => {
+        active = false;
+      };
+    }
+
     getWorkerClaims(workerId)
-      .then(setClaims)
-      .finally(() => setLoading(false));
+      .then((data) => {
+        if (!active) return;
+        setClaims(Array.isArray(data) ? data : []);
+      })
+      .catch(() => {
+        if (!active) return;
+        setClaims([]);
+      })
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+
+    return () => {
+      active = false;
+    };
   }, [workerId]);
 
   if (loading) return (

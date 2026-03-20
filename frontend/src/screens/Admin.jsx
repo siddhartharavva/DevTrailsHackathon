@@ -30,7 +30,16 @@ export default function Admin() {
 
   const load = () => {
     Promise.all([getAdminDashboard(), getFlaggedClaims(), listWorkers()])
-      .then(([d, f, w]) => { setDashboard(d); setFlagged(f); setWorkers(w); })
+      .then(([d, f, w]) => {
+        setDashboard(d || null);
+        setFlagged(Array.isArray(f) ? f : []);
+        setWorkers(Array.isArray(w) ? w : []);
+      })
+      .catch(() => {
+        setDashboard(null);
+        setFlagged([]);
+        setWorkers([]);
+      })
       .finally(() => setLoading(false));
   };
 

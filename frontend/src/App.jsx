@@ -1,21 +1,20 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Home from "./screens/Home";
 import Onboarding from "./screens/Onboarding";
 import Dashboard  from "./screens/Dashboard";
 import Claims     from "./screens/Claims";
 import Admin      from "./screens/Admin";
-import "./index.css";
 
 function App() {
-  const workerId = localStorage.getItem("worker_id");
-
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/onboarding" element={<Onboarding />} />
-        <Route path="/dashboard"  element={workerId ? <Dashboard /> : <Navigate to="/onboarding" />} />
-        <Route path="/claims"     element={workerId ? <Claims />    : <Navigate to="/onboarding" />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/claims" element={<Claims />} />
         <Route path="/admin"      element={<Admin />} />
-        <Route path="*"           element={<Navigate to={workerId ? "/dashboard" : "/onboarding"} />} />
+        <Route path="*"           element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   );
